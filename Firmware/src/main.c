@@ -144,12 +144,19 @@ void decode_received_data(uint8_t byte)
 				for(i = 0; i < N_PWM_CHANNELS; i++) {
 					pwm_values[i] = buf[i];
 				}
+				break;
 
 			case ESCAPE:
 				if(idx < N_PWM_CHANNELS) {
 					buf[idx] = byte;
 				}
 				idx++;
+				break;
+
+			default:
+				// an unknown escaped character was received. This is a protocol
+				// violation and makes the current frame invalid.
+				state_info &= ~FRAME_ACTIVE;
 				break;
 		}
 	} else {
