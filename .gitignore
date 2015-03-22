@@ -1,3 +1,4 @@
 bin/
 obj/
 .*.sw?
+__pycache__/
