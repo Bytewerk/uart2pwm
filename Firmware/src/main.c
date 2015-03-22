@@ -2,8 +2,8 @@
 #include <avr/interrupt.h>
 
 #define ESCAPE '\x1b' // ESC
-#define START '\x02'  // STX
-#define STOP '\x03'   // ETX
+#define START  '\x02' // STX
+#define STOP   '\x03' // ETX
 
 #define N_PWM_CHANNELS 3
 #define N_PWM_BITS 8
@@ -56,25 +56,10 @@ ISR(USART_RX_vect)
 	byte_received = 1;
 }
 
-#if 0
-ISR(ADC_vect)
-{
-	meas_val += ADC;
-}
-#endif
-
 /* ------------------------------------------------------------------------- */
 /* -----------------------------   Functions   ----------------------------- */
 /* ------------------------------------------------------------------------- */
 
-void set_led_brightness(uint8_t brightness)
-{
-	pwm_values[0] = brightness;
-	pwm_values[1] = brightness & 0x3;
-	//pwm_values[2] = ((1 << (N_PWM_BITS+1)) - 1) - brightness;
-}
-
-/* ------------------------------------------------------------------------- */
 void init_led_pwm(void)
 {
 	// configure timer
@@ -94,7 +79,7 @@ void init_uart(void)
 	UBRRL = 12; // UBRR ~= 8 MHz / (16 * 38400)
 	/* Enable receiver (+interrupt) and transmitter */
 	UCSRB = (1<<RXCIE)|(1<<RXEN)|(1<<TXEN);
-	/* Set frame format: 8data, 2stop bit */
+	/* Set frame format: 8data, 1stop bit */
 	UCSRC = (3<<UCSZ0);
 }
 
@@ -139,7 +124,7 @@ void decode_received_data(uint8_t byte)
 					break;
 				}
 				
-				// check_crc(buf)
+				// TODO: check_crc(buf)
 
 				for(i = 0; i < N_PWM_CHANNELS; i++) {
 					pwm_values[i] = buf[i];
@@ -175,9 +160,6 @@ void decode_received_data(uint8_t byte)
 
 int __attribute__((noreturn)) main(void)
 {
-	uint8_t dc = 0;
-	uint8_t i = 0;
-
 	init();
 
 	set_led_brightness(128);
@@ -192,14 +174,5 @@ int __attribute__((noreturn)) main(void)
 
 			decode_received_data(rx_byte);
 		}
-
-		/*if(tick) {
-			tick = 0;
-
-			if((i++ & 0x000F) == 0) {
-				dc += 1;
-				set_led_brightness(dc);
-			}
-		}*/
 	}
 }
