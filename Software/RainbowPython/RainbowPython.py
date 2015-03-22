@@ -23,6 +23,11 @@ class Rainbow:
 		redHex = bytes([red])
 		greenHex = bytes([green])
 		blueHex = bytes([blue])
+		
+		if(redHex == self._escapeSeq): redHex = self._escapeSeq*2
+		if(greenHex == self._escapeSeq): greenHex = self._escapeSeq*2
+		if(blueHex == self._escapeSeq): blueHex = self._escapeSeq*2
+
 		#TODO: Calculate checksum
 		checksum = b'\x00'
 
