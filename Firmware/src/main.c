@@ -162,8 +162,6 @@ int __attribute__((noreturn)) main(void)
 {
 	init();
 
-	set_led_brightness(128);
-
 	sei();
 
 	while(1) // idle loop
