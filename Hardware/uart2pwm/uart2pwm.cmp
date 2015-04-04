@@ -1,17 +1,17 @@
-Cmp-Mod V01 Created by Cvpcb (after 2015-jan-16 BZR unknown)-product   date = Mi 25 Mär 2015 22:37:46 CET
+Cmp-Mod V01 Created by Cvpcb (after 2015-jan-16 BZR unknown)-product   date = Mi 01 Apr 2015 00:29:13 CEST
 
 BeginCmp
 TimeStamp = /551079C5;
 Reference = C1;
 ValeurCmp = 1uF;
-IdModule  = Discret:C1V5;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /55107AD6;
 Reference = C2;
 ValeurCmp = 1uF;
-IdModule  = Discret:C1V5;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
@@ -39,21 +39,21 @@ BeginCmp
 TimeStamp = /551077EC;
 Reference = C6;
 ValeurCmp = 470uF;
-IdModule  = Capacitors_Elko_ThroughHole:Elko_vert_20x10mm_RM5;
+IdModule  = Capacitors_Elko_ThroughHole:Elko_vert_11.5x8mm_RM3.5;
 EndCmp
 
 BeginCmp
 TimeStamp = /55107C04;
 Reference = C7;
 ValeurCmp = 1uF;
-IdModule  = Discret:C1V5;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /55107D40;
 Reference = C8;
 ValeurCmp = 1uF;
-IdModule  = Discret:C1V5;
+IdModule  = Capacitors_SMD:C_0805;
 EndCmp
 
 BeginCmp
